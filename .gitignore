@@ -1,0 +1,12 @@
+# Ignore a specific file
+secrets.json
+
+# Ignore a specific folder (add a trailing slash)
+node_modules/
+dist/
+
+# Ignore all files ending with a specific extension
+*.log
+*.tmp
+
+# Ignore environment variables
