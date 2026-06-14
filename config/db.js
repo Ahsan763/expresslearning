@@ -1,12 +1,13 @@
-import mongoose from "mongoose"
-import colors from "colors"
-import dotenv from "dotenv"
-const connectDb = async()=>{
+import mongoose from "mongoose";
+
+const connectDb = async () => {
   try {
-    const conn = await mongoose.connect(process.env.mongo_uri);
-    console.log(`Connected to mongodb ${conn.connection.host}`.bgMagenta.white)
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB connected: ${conn.connection.host}`);
   } catch (error) {
-    console.log(`Error in mongo db ${error}`.bgRed.white)
+    console.error(`MongoDB connection failed: ${error.message}`);
+    process.exit(1); // Crash fast — don't run without a DB
   }
-}
+};
+
 export default connectDb;
