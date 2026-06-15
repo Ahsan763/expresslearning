@@ -55,7 +55,7 @@ app.use(express.json({ limit: "10kb" })); // Reject oversized payloads
 app.use(morgan(process.env.NODE_ENV === "production" ? "combined" : "dev"));
 
 // ─── Routes ───────────────────────────────────────────────────────────────────
-app.use("/auth", authRoutes);
+app.use("/api", inde);
 
 app.get("/", (req, res) => {
   res.json({ success: true, message: "API is running." });
