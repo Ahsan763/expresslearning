@@ -1,4 +1,4 @@
-import AuditLog from "../modules/auditLogModule.js";
+import AuditLog from "../modules/auditLog.module.js";
 
 /**
  * Extracts the real client IP, respecting common reverse-proxy headers.

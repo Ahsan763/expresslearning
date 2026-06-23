@@ -6,15 +6,15 @@ import {
   resendVerificationController,
   forgotPasswordController,
   resetPasswordController,
-} from "../controllers/authController.js";
-import { isAdmin, requireSignIn, requireVerifiedEmail } from "../middlewares/authMiddlewares.js";
+} from "../controllers/auth.controller.js";
+import { isAdmin, requireSignIn, requireVerifiedEmail } from "../middlewares/auth.middlewares.js";
 import validate from "../middlewares/validate.js";
 import {
   signupSchema,
   loginSchema,
   forgotPasswordSchema,
   resetPasswordSchema,
-} from "../validators/Authvalidator.js";
+} from "../validators/auth.validator.js";
 
 const router = express.Router();
 

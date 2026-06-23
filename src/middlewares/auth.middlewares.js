@@ -1,5 +1,5 @@
 import JWT from "jsonwebtoken";
-import userModule from "../modules/userModule.js";
+import userModule from "../modules/user.module.js";
 
 /**
  * Validates the Bearer token from the Authorization header.

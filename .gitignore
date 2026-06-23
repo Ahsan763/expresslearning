@@ -10,3 +10,7 @@ dist/
 *.tmp
 
 # Ignore environment variables
+.env
+
+# Uploaded files
+uploads/
