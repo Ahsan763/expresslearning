@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { UserRole } from "../enums/common.enums.js";
 
 const userSchema = new mongoose.Schema(
   {
@@ -34,7 +35,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: Number,
-      default: 0, // 0 = user, 1 = admin
+      enum: Object.values(UserRole),
+      default: UserRole.USER,
     },
 
     // Email verification

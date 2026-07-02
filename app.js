@@ -9,7 +9,6 @@ import path from "path";
 import connectDb from "./src/config/db.js";
 import corsOptions from "./src/config/cors.config.js";
 import routes from "./src/routes/index.js";
-import { AppError } from "./src/utils/app.error.js";
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 

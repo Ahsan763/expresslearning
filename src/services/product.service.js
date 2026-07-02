@@ -1,5 +1,5 @@
-import Product from "../modules/product.module.js";
-import Category from "../modules/category.module.js";
+import Product from "../modules/product.model.js";
+import Category from "../modules/category.model.js";
 import { AppError } from "../utils/app.error.js";
 import { createSlug, uniqueSlug } from "../utils/slug.js";
 import { buildUploadPath, deleteFiles } from "../utils/file.helper.js";
