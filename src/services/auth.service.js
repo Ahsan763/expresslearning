@@ -44,7 +44,7 @@ const sendEmailSafely = (sendFn) => {
 };
 
 export const signup = async (data, req) => {
-  const { first_name, last_name, email, phone, address, password } = data;
+  const { first_name, last_name, email, phone, address, password ,role } = data;
 
   const existingUser = await userModel.findOne({ email });
   if (existingUser) {
@@ -123,7 +123,7 @@ export const resendVerification = async (email, req) => {
   };
 };
 
-export const login = async ({ email, password }, req) => {
+export const login = async ({ email, password ,role }, req) => {
   const user = await userModel.findOne({ email });
 
   if (!user) {

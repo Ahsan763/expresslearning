@@ -43,56 +43,61 @@ export const requireSignIn = (req, res, next) => {
  *
  * Also enforces that only verified accounts can access admin routes.
  */
-export const isAdmin = async (req, res, next) => {
-  try {
-    const user = await userModule.findById(req.user._id).select("role isEmailVerified");
+// export const isAdmin = async (req, res, next) => {
+//   try {
+//     const user = await userModule.findById(req.user._id).select("role isEmailVerified");
 
-    if (!user) {
-      return res.status(401).json({ success: false, message: "User not found." });
-    }
+//     if (!user) {
+//       return res.status(401).json({ success: false, message: "User not found." });
+//     }
 
-    if (!user.isEmailVerified) {
-      return res.status(403).json({
-        success: false,
-        message: "Please verify your email before accessing this resource.",
-      });
-    }
+//     if (!user.isEmailVerified) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Please verify your email before accessing this resource.",
+//       });
+//     }
 
-    if (user.role !== 1) {
-      return res.status(403).json({
-        success: false,
-        message: "Access denied. Admins only.",
-      });
-    }
+//     if (user.role !== 1) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Access denied. Admins only.",
+//       });
+//     }
 
-    next();
-  } catch (error) {
-    console.error("isAdmin middleware error:", error);
-    return res.status(500).json({
-      success: false,
-      message: "Authorization check failed.",
-    });
-  }
-};
+//     next();
+//   } catch (error) {
+//     console.error("isAdmin middleware error:", error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Authorization check failed.",
+//     });
+//   }
+// };
 
-/**
- * Ensures the authenticated user has a verified email.
- * Use on any route that requires a confirmed account.
- */
-export const requireVerifiedEmail = async (req, res, next) => {
-  try {
-    const user = await userModule.findById(req.user._id).select("isEmailVerified");
+// /**
+//  * Ensures the authenticated user has a verified email.
+//  * Use on any route that requires a confirmed account.
+//  */
+// export const requireVerifiedEmail = async (req, res, next) => {
+//   try {
+//     const user = await userModule.findById(req.user._id).select("isEmailVerified");
 
-    if (!user || !user.isEmailVerified) {
-      return res.status(403).json({
-        success: false,
-        message: "Please verify your email address to access this resource.",
-      });
-    }
+//     if (!user || !user.isEmailVerified) {
+//       return res.status(403).json({
+//         success: false,
+//         message: "Please verify your email address to access this resource.",
+//       });
+//     }
 
-    next();
-  } catch (error) {
-    console.error("requireVerifiedEmail error:", error);
-    return res.status(500).json({ success: false, message: "Server error." });
-  }
-};
+//     next();
+//   } catch (error) {
+//     console.error("requireVerifiedEmail error:", error);
+//     return res.status(500).json({ success: false, message: "Server error." });
+//   }
+// };
+
+const signToken = (userId) =>
+  JWT.sign({ _id: userId }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || "7d",
+  });

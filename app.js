@@ -41,7 +41,7 @@ export function createApp() {
   app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
   app.use("/", routes);
 
-  app.get("/", (_req, res) => {
+  app.get("/health", (_req, res) => {
     res.json({ success: true, message: "API is running." });
   });
 
