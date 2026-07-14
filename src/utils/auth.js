@@ -10,7 +10,13 @@ export const hashPassword = async (password) => {
 export const compareHashPassword = async (password, hashedPassword) => {
   return bcrypt.compare(password, hashedPassword);
 };
-
+/**
+ * SHA-256 hash of a token string.
+ * Used to compare an incoming raw token against the stored hash.
+ */
+export const hashToken = (token) => {
+  return crypto.createHash("sha256").update(token).digest("hex");
+};
 /**
  * Generates a cryptographically secure random token (hex string).
  * Returns the raw token (sent in email) AND the hashed version (stored in DB).
@@ -28,10 +34,3 @@ export const generateSecureToken = () => {
   return { rawToken, hashedToken };
 };
 
-/**
- * SHA-256 hash of a token string.
- * Used to compare an incoming raw token against the stored hash.
- */
-export const hashToken = (token) => {
-  return crypto.createHash("sha256").update(token).digest("hex");
-};
